@@ -1,37 +1,36 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Deployment ML Project</title>
+  <title>Classificador de espécies Pokémon</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
-  
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
 <body>
- <div class="login">
-	<h1>Classificador de espécies IRIS FLOWER</h1>
+  <div class="login">
+    <h1>Classificador de espécies Pokémon</h1>
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}" method="post">
-    <input type="text" name="sl" placeholder="Sepal length (cm)" required="required" />
-    <input type="text" name="sw" placeholder="Sepal width (cm)" required="required" />
-		<input type="text" name="pl" placeholder="Petal length (cm)" required="required" />
-		<input type="text" name="pw" placeholder="Petal length (cm)" required="required" />
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict') }}" method="post">
+      <input type="text" name="Total" placeholder="Total" required="required" />
+      <input type="text" name="HP" placeholder="HP" required="required" />
+      <input type="text" name="Attack" placeholder="Attack" required="required" />
+      <input type="text" name="Defense" placeholder="Defense" required="required" />
+      <input type="text" name="Sp. Atk" placeholder="Special Attack" required="required" />
+      <input type="text" name="Sp. Def" placeholder="Special Defense" required="required" />
+      <input type="text" name="Speed" placeholder="Speed" required="required" />
+      <input type="text" name="Generation" placeholder="Generation" required="required" />
+      <input type="text" name="Legendary" placeholder="Legendary" required="required" />
 
-
-        <button type="submit" class="btn btn-primary btn-block btn-large">Classificar IRIS</button>
+      <button type="submit" class="btn btn-primary btn-block btn-large">Classificar Pokémon</button>
     </form>
 
-   <br>
-   <br>
-   {{ prediction_text }}
-
- </div>
-
-
+    <br>
+    <br>
+    {{ prediction_text }}
+  </div>
 </body>
 </html>

@@ -1,6 +1,19 @@
 import requests
 
 url = 'http://localhost:5000/api'
-r = requests.post(url,json={'sl':2, 'sw':2, 'pl':4, 'pw':5})
+# Os nomes das características do Pokémon devem corresponder ao que você tem no modelo treinado
+data = {
+    "Total": 318, 
+    "HP": 45, 
+    "Attack": 49, 
+    "Defense": 49, 
+    "Sp. Atk": 65, 
+    "Sp. Def": 65, 
+    "Speed": 45, 
+    "Generation": 1, 
+    "Legendary": False
+}
+
+r = requests.post(url, json=data)
 
 print(r.json())
