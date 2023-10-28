@@ -2,13 +2,12 @@ import numpy as np
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 import pickle
-import pandas as pd
 
 app = Flask(__name__)
 CORS(app)
+
+# Carregar o modelo treinado
 model = pickle.load(open("model.pkl", "rb"))
-pokemon_data = pd.read_csv("Pokemon.csv")
-labels_names = pokemon_data["Type 1"].unique()
 
 @app.route("/")
 def home():
@@ -16,20 +15,50 @@ def home():
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    features = [float(request.form[x]) for x in labels_names]
-    final_features = [np.array(features)]
-    pred = model.predict(final_features)
-    output = labels_names[pred[0]]
-    return render_template("index.html", prediction_text="Pokemon Type: " + output)
+    try:
+        # Coletar dados do formulário HTML
+        features = [float(request.form['Total']), float(request.form['HP']),
+                    float(request.form['Attack']), float(request.form['Defense']),
+                    float(request.form['Sp. Atk']), float(request.form['Sp. Def']),
+                    float(request.form['Speed'])]
+
+        # Realizar a previsão
+        pred = model.predict([features])
+        predicted_legendary = pred[0]
+
+        if predicted_legendary == 1:
+            prediction_text = "Este Pokémon é lendário!"
+        else:
+            prediction_text = "Este Pokémon não é lendário."
+
+        return render_template("index.html", prediction_text=prediction_text)
+
+    except Exception as e:
+        return render_template("index.html", prediction_text="Erro: Certifique-se de preencher todos os campos corretamente.")
 
 @app.route("/api", methods=["POST"])
-def results():
-    data = request.get_json(force=True)
-    feature_names = labels_names.tolist()
-    features = [data.get(feature, 0) for feature in feature_names]
-    pred = model.predict([np.array(features)])
-    output = labels_names[pred[0]]
-    return jsonify({"prediction": output})
+def api_predict():
+    try:
+        data = request.get_json()
+
+        # Coletar dados do JSON
+        total = float(data['Total'])
+        hp = float(data['HP'])
+        attack = float(data['Attack'])
+        defense = float(data['Defense'])
+        sp_atk = float(data['Sp. Atk'])
+        sp_def = float(data['Sp. Def'])
+        speed = float(data['Speed'])
+
+        # Realizar a previsão
+        features = [total, hp, attack, defense, sp_atk, sp_def, speed]
+        pred = model.predict([features])
+        predicted_legendary = pred[0]
+
+        return jsonify({"is_legendary": bool(predicted_legendary)})
+
+    except Exception as e:
+        return jsonify({"error": "Erro: Certifique-se de enviar os dados corretamente."})
 
 if __name__ == "__main":
     app.run(debug=True)

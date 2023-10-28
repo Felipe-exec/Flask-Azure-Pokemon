@@ -21,16 +21,49 @@ body {
   color: #fff;
   font-size: 24px;
   text-align: center;
-  letter-spacing: 1.4px;
+  letter-spacing: 1.2px;
 }
 
-.login {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  margin: -150px 0 0 -150px;
-  width: 400px;
-  height: 400px;
+.resultados {
+  background-color: #7FFFD4;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  padding: 50px;
+  margin: 10px;
+  margin-right: 28px;
+  border-radius: 10px;
+
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+
+.resultados h1 {
+  color: #0074e4;
+  font-size: 24px;
+}
+
+.resultados input[type="text"] {
+  width: 20%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.resultados button {
+  background-color: #0074e4;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.resultados h1 + p {
+  color: #555;
+}
+
+.resultados p {
+  text-align: center;
 }
 
 input {
@@ -45,11 +78,13 @@ input {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 4px;
-  box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2),
-    0 1px 1px rgba(255, 255, 255, 0.2);
-  -webkit-transition: box-shadow 0.5s ease;
-  -moz-transition: box-shadow 0.5s ease;
-  -o-transition: box-shadow 0.5s ease;
-  -ms-transition: box-shadow 0.5s ease;
-  transition: box-shadow 0.5s ease;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+body span#imagem1 img {
+  max-width: 20%;
+}
+
+body span#imagem2 img {
+  max-width: 40%;
 }
